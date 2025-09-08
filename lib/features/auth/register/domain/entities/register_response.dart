@@ -18,11 +18,11 @@ class RegisterResponse extends Equatable {
 
 class RegisterResponseData extends Equatable {
   final User user;
-  final Tokens tokens;
+  final Tokens? tokens; // Make tokens optional
 
   const RegisterResponseData({
     required this.user,
-    required this.tokens,
+    this.tokens, // No longer required
   });
 
   @override

@@ -83,8 +83,7 @@ class AuthInterceptor extends Interceptor {
            path.contains('/register') || 
            path.contains(ApiConstants.forgotPassword) ||
            path.contains(ApiConstants.verifyResetCode) ||
-           path.contains(ApiConstants.resetPassword) ||
-           path.contains(ApiConstants.googleAuth);
+           path.contains(ApiConstants.resetPassword);
   }
 }
 

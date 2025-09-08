@@ -32,24 +32,25 @@ class RegisterResponseModel {
 
 class RegisterResponseDataModel {
   final UserModel user;
-  final TokensModel tokens;
+  final TokensModel? tokens; // Make tokens optional
 
   RegisterResponseDataModel({
     required this.user,
-    required this.tokens,
+    this.tokens, // No longer required
   });
 
   factory RegisterResponseDataModel.fromJson(Map<String, dynamic> json) {
     return RegisterResponseDataModel(
       user: UserModel.fromJson(json['user']),
-      tokens: TokensModel.fromJson(json['tokens']),
+      // Check if tokens exist in the response
+      tokens: json['tokens'] != null ? TokensModel.fromJson(json['tokens']) : null,
     );
   }
 
   entities.RegisterResponseData toEntity() {
     return entities.RegisterResponseData(
       user: user.toEntity(),
-      tokens: tokens.toEntity(),
+      tokens: tokens?.toEntity(), // Convert only if tokens exist
     );
   }
 }
@@ -100,7 +101,7 @@ class UserModel {
       fname: json['fname'],
       lname: json['lname'],
       email: json['email'],
-      role: json['role'].toString(),
+      role: json['role_id'] != null ? json['role_id'].toString() : json['role'].toString(),
       photo: json['photo'] != null ? UrlHelper.formatImageUrl(json['photo']) : null,
     );
   }

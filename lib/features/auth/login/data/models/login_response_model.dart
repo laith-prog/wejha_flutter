@@ -50,7 +50,8 @@ class UserModel {
   final String id;
   final String fname;
   final String lname;
-  final String type;
+  final String role;
+  final String roleId;
   final String email;
   final String emailVerifiedAt;
   final String phone;
@@ -58,7 +59,6 @@ class UserModel {
   final String birthday;
   final String authProvider;
   final String? photo;
-  final int? roleId;
   final String? refreshTokenExpiresAt;
   final String createdAt;
   final String updatedAt;
@@ -68,7 +68,8 @@ class UserModel {
     required this.id,
     required this.fname,
     required this.lname,
-    required this.type,
+    required this.role,
+    required this.roleId,
     required this.email,
     required this.emailVerifiedAt,
     required this.phone,
@@ -76,7 +77,6 @@ class UserModel {
     required this.birthday,
     required this.authProvider,
     this.photo,
-    this.roleId,
     this.refreshTokenExpiresAt,
     required this.createdAt,
     required this.updatedAt,
@@ -88,7 +88,8 @@ class UserModel {
       id: json['id'],
       fname: json['fname'],
       lname: json['lname'],
-      type: json['type'],
+      role: json['role_name'] ?? json['role'] ?? 'user',
+      roleId: json['role_id'].toString(),
       email: json['email'],
       emailVerifiedAt: json['email_verified_at'],
       phone: json['phone'],
@@ -96,8 +97,7 @@ class UserModel {
       birthday: json['birthday'],
       authProvider: json['auth_provider'],
       photo: json['photo'] != null ? UrlHelper.formatImageUrl(json['photo']) : null,
-      roleId: json['role_id'],
-      refreshTokenExpiresAt: json['refresh_token_expires_at'],
+      refreshTokenExpiresAt: json['refresh_token_expires_at']?.toString(),
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
       deletedAt: json['deleted_at'],

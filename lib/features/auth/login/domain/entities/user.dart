@@ -4,7 +4,8 @@ class User extends Equatable {
   final String id;
   final String fname;
   final String lname;
-  final String type;
+  final String role;
+  final String roleId;
   final String email;
   final String emailVerifiedAt;
   final String phone;
@@ -12,7 +13,6 @@ class User extends Equatable {
   final String birthday;
   final String authProvider;
   final String? photo;
-  final int? roleId;
   final String? refreshTokenExpiresAt;
   final String createdAt;
   final String updatedAt;
@@ -22,7 +22,8 @@ class User extends Equatable {
     required this.id,
     required this.fname,
     required this.lname,
-    required this.type,
+    required this.role,
+    required this.roleId,
     required this.email,
     required this.emailVerifiedAt,
     required this.phone,
@@ -30,7 +31,6 @@ class User extends Equatable {
     required this.birthday,
     required this.authProvider,
     this.photo,
-    this.roleId,
     this.refreshTokenExpiresAt,
     required this.createdAt,
     required this.updatedAt,
@@ -42,7 +42,8 @@ class User extends Equatable {
         id,
         fname,
         lname,
-        type,
+        role,
+        roleId,
         email,
         emailVerifiedAt,
         phone,
@@ -50,7 +51,6 @@ class User extends Equatable {
         birthday,
         authProvider,
         photo,
-        roleId,
         refreshTokenExpiresAt,
         createdAt,
         updatedAt,

@@ -1,0 +1,4299 @@
+{
+	"info": {
+		"_postman_id": "2837203a-c980-4a1d-ac00-e4afb0267912",
+		"name": "Wejha API Collection (Generated) Copy",
+		"description": "Generated from routes and controller validation rules (DB-matched)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27981158"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "loginMethods [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/auth/methods",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"methods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "googleMobileAuth [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idToken\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/auth/google/mobile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"google",
+								"mobile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkUser [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/auth/check-user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"check-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "firebaseGoogleAuth [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idToken\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/auth/google/firebase",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"google",
+								"firebase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "completeRegistration [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"aaaaaa\",\n    \"password_confirmation\": \"aaaaaa\",\n    \"phone\": \"+1234567890\",\n    \"gender\": \"string\",\n    \"birthday\": \"2024-01-01\",\n    \"photo\": \"\",\n    \"role_id\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/register/complete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"register",
+								"complete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"abdkm2000@gmail.com\",\n    \"password\": \"Password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setPassword [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"aaaaaa\",\n    \"password_confirmation\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/auth/set-password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"set-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "redirectToGoogle [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/auth/google",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"google"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "handleGoogleCallback [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/auth/google/callback?error=string&code=string",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"google",
+								"callback"
+							],
+							"query": [
+								{
+									"key": "error",
+									"value": "string"
+								},
+								{
+									"key": "code",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "redirectToGoogle [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/auth/google/redirect",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"google",
+								"redirect"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "completeProfile [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"string\",\n    \"lname\": \"John\",\n    \"role_id\": \"string\",\n    \"phone\": \"+1234567890\",\n    \"gender\": \"string\",\n    \"birthday\": \"2024-01-01\",\n    \"photo\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/auth/complete-profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"complete-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh_token\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/auth/refresh",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgotPassword [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/auth/forgot-password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verifyCode [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"code\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/auth/verify-reset-code",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"verify-reset-code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resetPassword [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"aaaaaaaa\",\n    \"password_confirmation\": \"aaaaaaaa\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/auth/reset-password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/auth/test-email [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/auth/test-email",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"test-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/auth/test [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/auth/test",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/communities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"communities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/communities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"communities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/communities/{community}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"communities",
+								"{community}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update [PUT]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/communities/{community}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"communities",
+								"{community}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update [PATCH]",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/communities/{community}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"communities",
+								"{community}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "destroy [DELETE]",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/communities/{community}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"communities",
+								"{community}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProfile [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "becomeServiceProvider [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/become-service-provider",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"become-service-provider"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "becomeCustomer [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/become-customer",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"become-customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getServiceProviderProfile [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/my-service-provider-profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"my-service-provider-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/users/{user}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"{user}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update [PUT]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/users/{user}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"{user}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update [PATCH]",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/users/{user}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"{user}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "destroy [DELETE]",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/users/{user}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"{user}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/roles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"display_name\": \"John\",\n    \"description\": \"string\",\n    \"permissions\": \"string\",\n    \"permissions.*\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/roles?permissions=string",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"roles"
+							],
+							"query": [
+								{
+									"key": "permissions",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/roles/{role}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"{role}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update [PUT]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"display_name\": \"John\",\n    \"description\": \"string\",\n    \"permissions\": \"string\",\n    \"permissions.*\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/roles/{role}?permissions=string",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"{role}"
+							],
+							"query": [
+								{
+									"key": "permissions",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update [PATCH]",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"display_name\": \"John\",\n    \"description\": \"string\",\n    \"permissions\": \"string\",\n    \"permissions.*\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/roles/{role}?permissions=string",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"{role}"
+							],
+							"query": [
+								{
+									"key": "permissions",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "destroy [DELETE]",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/roles/{role}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"{role}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/permissions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"display_name\": \"John\",\n    \"description\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/permissions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/permissions/{permission}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"permissions",
+								"{permission}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update [PUT]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"display_name\": \"John\",\n    \"description\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/permissions/{permission}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"permissions",
+								"{permission}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update [PATCH]",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"display_name\": \"John\",\n    \"description\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/permissions/{permission}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"permissions",
+								"{permission}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "destroy [DELETE]",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/permissions/{permission}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"permissions",
+								"{permission}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/verifications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"verifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/verifications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"verifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/verifications/{verification}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"verifications",
+								"{verification}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update [PUT]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/verifications/{verification}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"verifications",
+								"{verification}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update [PATCH]",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/verifications/{verification}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"verifications",
+								"{verification}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "destroy [DELETE]",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/v1/verifications/{verification}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"verifications",
+								"{verification}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sendCode [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fname\": \"John\",\n    \"lname\": \"John\",\n    \"email\": \"user@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/verification/send",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"verification",
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verifyCode [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"code\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/verification/verify",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"verification",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "user [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "listings",
+			"item": [
+				{
+					"name": "index [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/listings?category_id=1&subcategory_id=1&status=string&search=string",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings"
+							],
+							"query": [
+								{
+									"key": "category_id",
+									"value": "1"
+								},
+								{
+									"key": "subcategory_id",
+									"value": "1"
+								},
+								{
+									"key": "status",
+									"value": "string"
+								},
+								{
+									"key": "search",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/listings/search",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/listings/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/listings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update [PUT]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/listings/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "destroy [DELETE]",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/listings/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSimilarListings [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/listings/{id}/similar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings",
+								"{id}",
+								"similar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/listings/{id}/images",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings",
+								"{id}",
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOrder [PUT]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"image_order\": \"string\",\n    \"image_order.*\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/listings/{id}/images/order",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings",
+								"{id}",
+								"images",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getListingImages [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/listings/{id}/images",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings",
+								"{id}",
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"display_name\": \"John\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/listings/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "storeSubcategory [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category_id\": \"string\",\n    \"name\": \"John\",\n    \"display_name\": \"John\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/listings/subcategories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings",
+								"subcategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getListingReviews [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/listings/{id}/reviews?min_rating=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"listings",
+								"{id}",
+								"reviews"
+							],
+							"query": [
+								{
+									"key": "min_rating",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "real-estate",
+			"item": [
+				{
+					"name": "index [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/real-estate?subcategory_id=1&offer_type=string&min_price=1&max_price=1&min_area=1&max_area=1&rooms=string&bathrooms=1&is_room_rental=string&facility_under_construction=string",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate"
+							],
+							"query": [
+								{
+									"key": "subcategory_id",
+									"value": "1"
+								},
+								{
+									"key": "offer_type",
+									"value": "string"
+								},
+								{
+									"key": "min_price",
+									"value": "1"
+								},
+								{
+									"key": "max_price",
+									"value": "1"
+								},
+								{
+									"key": "min_area",
+									"value": "1"
+								},
+								{
+									"key": "max_area",
+									"value": "1"
+								},
+								{
+									"key": "rooms",
+									"value": "string"
+								},
+								{
+									"key": "bathrooms",
+									"value": "1"
+								},
+								{
+									"key": "is_room_rental",
+									"value": "string"
+								},
+								{
+									"key": "facility_under_construction",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/real-estate/search?subcategory_id=1&property_type=house&offer_type=sell&min_price=0&max_price=1000000&min_area=1&max_area=100000000000000000000000000000&rooms=3&bathrooms=2&is_room_rental=false&facility_under_construction=false&city=down",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate",
+								"search"
+							],
+							"query": [
+								{
+									"key": "subcategory_id",
+									"value": "1"
+								},
+								{
+									"key": "property_type",
+									"value": "house"
+								},
+								{
+									"key": "offer_type",
+									"value": "sell"
+								},
+								{
+									"key": "min_price",
+									"value": "0"
+								},
+								{
+									"key": "max_price",
+									"value": "1000000"
+								},
+								{
+									"key": "min_area",
+									"value": "1"
+								},
+								{
+									"key": "max_area",
+									"value": "100000000000000000000000000000"
+								},
+								{
+									"key": "rooms",
+									"value": "3"
+								},
+								{
+									"key": "bathrooms",
+									"value": "2"
+								},
+								{
+									"key": "is_room_rental",
+									"value": "false"
+								},
+								{
+									"key": "facility_under_construction",
+									"value": "false"
+								},
+								{
+									"key": "city",
+									"value": "down"
+								},
+								{
+									"key": "area",
+									"value": "string",
+									"disabled": true
+								},
+								{
+									"key": "lat",
+									"value": "24.7136",
+									"disabled": true
+								},
+								{
+									"key": "lng",
+									"value": "46.6753",
+									"disabled": true
+								},
+								{
+									"key": "radius",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/real-estate/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/real-estate/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store [POST]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2xvZ2luIiwiaWF0IjoxNzU2MTIxNDMxLCJleHAiOjE3NTYxMjIzMzEsIm5iZiI6MTc1NjEyMTQzMSwianRpIjoiNzg0YXQ3ZGpJU1pKU0JxZiIsInN1YiI6ImZhOTQzZmQxLWU4OGItNDUwOC05MjE0LTYxMmFjN2RhYzNlYyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.KnJ5GTSL2zf8vbhmwAtDIs-BUH3kmCcrQ16F8xB7V9E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Beautiful 3-Bedroom Apartment in Downtown\",\n  \"description\": \"Spacious apartment with modern amenities in the heart of the city\",\n  \"price\": 250000,\n  \"price_type\": \"total\",\n  \"currency\": \"USD\",\n  \"phone_number\": \"+1234567890\",\n  \"purpose\": \"rent\",\n  \"subcategory_id\": 1,\n  \"offer_type\": \"rent\",\n  \"lat\": 31.9539,\n  \"lng\": 35.9106,\n  \"city\": \"Amman\",\n  \"area\": \"Downtown\",\n  \"property_area\": 130,\n  \"facility_under_construction\": false,\n  \"room_number\": 3,\n  \"bathrooms\": 2,\n  \"floors\": 1,\n  \"floor_number\": 4,\n  \"has_parking\": true,\n  \"has_garden\": false,\n  \"balcony\": 1,\n  \"has_pool\": false,\n  \"has_elevator\": true,\n  \"furnished\": \"fully\",\n  \"year_built\": 2020,\n  \"ownership_type\": \"freehold\",\n  \"legal_status\": \"clean_title\",\n  \"amenities\": [\"security\", \"gym\", \"central_ac\", \"storage\"]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/real-estate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "realEstateRentalSearch [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/real-estate/rentals/search?lat=31.8&lng=36.0&property_type=house",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate",
+								"rentals",
+								"search"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "string",
+									"disabled": true
+								},
+								{
+									"key": "area",
+									"value": "string",
+									"disabled": true
+								},
+								{
+									"key": "lat",
+									"value": "31.8"
+								},
+								{
+									"key": "lng",
+									"value": "36.0"
+								},
+								{
+									"key": "radius",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "property_type",
+									"value": "house"
+								},
+								{
+									"key": "min_price",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "max_price",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "min_area",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "max_area",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "bedrooms",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "bathrooms",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "furnished",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "under_construction",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "amenities[]",
+									"value": "option1",
+									"disabled": true
+								},
+								{
+									"key": "amenities[]",
+									"value": "option2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRealEstateFilters [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/real-estate/rentals/filters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate",
+								"rentals",
+								"filters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "realEstateSaleSearch [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/real-estate/sales/search?city=string&area=string&lat=24.7136&lng=46.6753&radius=10&property_type=string&min_price=1&max_price=1&min_area=1&max_area=1&bedrooms=1&bathrooms=1&furnished=true&under_construction=true&amenities[]=option1&amenities[]=option2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate",
+								"sales",
+								"search"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "string"
+								},
+								{
+									"key": "area",
+									"value": "string"
+								},
+								{
+									"key": "lat",
+									"value": "24.7136"
+								},
+								{
+									"key": "lng",
+									"value": "46.6753"
+								},
+								{
+									"key": "radius",
+									"value": "10"
+								},
+								{
+									"key": "property_type",
+									"value": "string"
+								},
+								{
+									"key": "min_price",
+									"value": "1"
+								},
+								{
+									"key": "max_price",
+									"value": "1"
+								},
+								{
+									"key": "min_area",
+									"value": "1"
+								},
+								{
+									"key": "max_area",
+									"value": "1"
+								},
+								{
+									"key": "bedrooms",
+									"value": "1"
+								},
+								{
+									"key": "bathrooms",
+									"value": "1"
+								},
+								{
+									"key": "furnished",
+									"value": "true"
+								},
+								{
+									"key": "under_construction",
+									"value": "true"
+								},
+								{
+									"key": "amenities[]",
+									"value": "option1"
+								},
+								{
+									"key": "amenities[]",
+									"value": "option2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRealEstateSaleFilters [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/real-estate/sales/filters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate",
+								"sales",
+								"filters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "roomRentalSearch [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/real-estate/rooms/search?city=string&area=string&lat=24.7136&lng=46.6753&radius=10&min_price=1&max_price=1&min_area=1&max_area=1&bathroom_type=string&furnished=true&gender_preference=string&utilities_included=string&internet_included=string&amenities[]=option1&amenities[]=option2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate",
+								"rooms",
+								"search"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "string"
+								},
+								{
+									"key": "area",
+									"value": "string"
+								},
+								{
+									"key": "lat",
+									"value": "24.7136"
+								},
+								{
+									"key": "lng",
+									"value": "46.6753"
+								},
+								{
+									"key": "radius",
+									"value": "10"
+								},
+								{
+									"key": "min_price",
+									"value": "1"
+								},
+								{
+									"key": "max_price",
+									"value": "1"
+								},
+								{
+									"key": "min_area",
+									"value": "1"
+								},
+								{
+									"key": "max_area",
+									"value": "1"
+								},
+								{
+									"key": "bathroom_type",
+									"value": "string"
+								},
+								{
+									"key": "furnished",
+									"value": "true"
+								},
+								{
+									"key": "gender_preference",
+									"value": "string"
+								},
+								{
+									"key": "utilities_included",
+									"value": "string"
+								},
+								{
+									"key": "internet_included",
+									"value": "string"
+								},
+								{
+									"key": "amenities[]",
+									"value": "option1"
+								},
+								{
+									"key": "amenities[]",
+									"value": "option2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRoomRentalFilters [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/real-estate/rooms/filters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate",
+								"rooms",
+								"filters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "investmentPropertySearch [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/real-estate/investment/search?city=string&area=string&lat=24.7136&lng=46.6753&radius=10&property_type=string&min_price=1&max_price=1&min_area=1&max_area=1&bedrooms=1&bathrooms=1&min_progress=1&max_progress=1&min_completion_date=1&max_completion_date=1&investment_type=string&min_roi=1&payment_plan=string&amenities[]=option1&amenities[]=option2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate",
+								"investment",
+								"search"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "string"
+								},
+								{
+									"key": "area",
+									"value": "string"
+								},
+								{
+									"key": "lat",
+									"value": "24.7136"
+								},
+								{
+									"key": "lng",
+									"value": "46.6753"
+								},
+								{
+									"key": "radius",
+									"value": "10"
+								},
+								{
+									"key": "property_type",
+									"value": "string"
+								},
+								{
+									"key": "min_price",
+									"value": "1"
+								},
+								{
+									"key": "max_price",
+									"value": "1"
+								},
+								{
+									"key": "min_area",
+									"value": "1"
+								},
+								{
+									"key": "max_area",
+									"value": "1"
+								},
+								{
+									"key": "bedrooms",
+									"value": "1"
+								},
+								{
+									"key": "bathrooms",
+									"value": "1"
+								},
+								{
+									"key": "min_progress",
+									"value": "1"
+								},
+								{
+									"key": "max_progress",
+									"value": "1"
+								},
+								{
+									"key": "min_completion_date",
+									"value": "1"
+								},
+								{
+									"key": "max_completion_date",
+									"value": "1"
+								},
+								{
+									"key": "investment_type",
+									"value": "string"
+								},
+								{
+									"key": "min_roi",
+									"value": "1"
+								},
+								{
+									"key": "payment_plan",
+									"value": "string"
+								},
+								{
+									"key": "amenities[]",
+									"value": "option1"
+								},
+								{
+									"key": "amenities[]",
+									"value": "option2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInvestmentPropertyFilters [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/real-estate/investment/filters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"real-estate",
+								"investment",
+								"filters"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "vehicles",
+			"item": [
+				{
+					"name": "index [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vehicles?subcategory_id=1&min_price=1&max_price=1&min_year=1&max_year=1&make=string&model=string",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vehicles"
+							],
+							"query": [
+								{
+									"key": "subcategory_id",
+									"value": "1"
+								},
+								{
+									"key": "min_price",
+									"value": "1"
+								},
+								{
+									"key": "max_price",
+									"value": "1"
+								},
+								{
+									"key": "min_year",
+									"value": "1"
+								},
+								{
+									"key": "max_year",
+									"value": "1"
+								},
+								{
+									"key": "make",
+									"value": "string"
+								},
+								{
+									"key": "model",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "vehicleSearch [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vehicles/search?city=string&area=string&lat=24.7136&lng=46.6753&radius=10&vehicle_type=string&make=string&model=string&min_year=1&max_year=1&min_price=1&max_price=1&min_mileage=1&max_mileage=1&transmission=string&fuel_type=string&color=string&body_type=string&condition=string&features[]=option1&features[]=option2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vehicles",
+								"search"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "string"
+								},
+								{
+									"key": "area",
+									"value": "string"
+								},
+								{
+									"key": "lat",
+									"value": "24.7136"
+								},
+								{
+									"key": "lng",
+									"value": "46.6753"
+								},
+								{
+									"key": "radius",
+									"value": "10"
+								},
+								{
+									"key": "vehicle_type",
+									"value": "string"
+								},
+								{
+									"key": "make",
+									"value": "string"
+								},
+								{
+									"key": "model",
+									"value": "string"
+								},
+								{
+									"key": "min_year",
+									"value": "1"
+								},
+								{
+									"key": "max_year",
+									"value": "1"
+								},
+								{
+									"key": "min_price",
+									"value": "1"
+								},
+								{
+									"key": "max_price",
+									"value": "1"
+								},
+								{
+									"key": "min_mileage",
+									"value": "1"
+								},
+								{
+									"key": "max_mileage",
+									"value": "1"
+								},
+								{
+									"key": "transmission",
+									"value": "string"
+								},
+								{
+									"key": "fuel_type",
+									"value": "string"
+								},
+								{
+									"key": "color",
+									"value": "string"
+								},
+								{
+									"key": "body_type",
+									"value": "string"
+								},
+								{
+									"key": "condition",
+									"value": "string"
+								},
+								{
+									"key": "features[]",
+									"value": "option1"
+								},
+								{
+									"key": "features[]",
+									"value": "option2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vehicles/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vehicles",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vehicles/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vehicles",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"price\": 1,\n    \"price_type\": \"string\",\n    \"currency\": \"string\",\n    \"phone_number\": \"+1234567890\",\n    \"purpose\": \"string\",\n    \"subcategory_id\": \"string\",\n    \"lat\": 1,\n    \"lng\": 1,\n    \"city\": \"string\",\n    \"area\": \"string\",\n    \"make\": \"string\",\n    \"model\": \"string\",\n    \"year\": 1,\n    \"mileage\": 1,\n    \"color\": \"string\",\n    \"transmission\": \"string\",\n    \"fuel_type\": \"string\",\n    \"engine_size\": \"string\",\n    \"condition\": \"string\",\n    \"body_type\": \"string\",\n    \"doors\": 1,\n    \"seats\": 1,\n    \"vehicle_features\": \"string\",\n    \"images.*\": \"\",\n    \"features\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/vehicles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vehicles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getVehicleFilters [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vehicles/filters?make=string",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vehicles",
+								"filters"
+							],
+							"query": [
+								{
+									"key": "make",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "services",
+			"item": [
+				{
+					"name": "index [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/services?subcategory_id=1&min_price=1&max_price=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"services"
+							],
+							"query": [
+								{
+									"key": "subcategory_id",
+									"value": "1"
+								},
+								{
+									"key": "min_price",
+									"value": "1"
+								},
+								{
+									"key": "max_price",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "serviceSearch [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/services/search?city=string&area=string&lat=24.7136&lng=46.6753&radius=10&service_type=string&subcategory_id=1&min_price=1&max_price=1&min_experience=1&min_rating=1&is_mobile=true&available_day=string&is_certified=string",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"services",
+								"search"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "string"
+								},
+								{
+									"key": "area",
+									"value": "string"
+								},
+								{
+									"key": "lat",
+									"value": "24.7136"
+								},
+								{
+									"key": "lng",
+									"value": "46.6753"
+								},
+								{
+									"key": "radius",
+									"value": "10"
+								},
+								{
+									"key": "service_type",
+									"value": "string"
+								},
+								{
+									"key": "subcategory_id",
+									"value": "1"
+								},
+								{
+									"key": "min_price",
+									"value": "1"
+								},
+								{
+									"key": "max_price",
+									"value": "1"
+								},
+								{
+									"key": "min_experience",
+									"value": "1"
+								},
+								{
+									"key": "min_rating",
+									"value": "1"
+								},
+								{
+									"key": "is_mobile",
+									"value": "true"
+								},
+								{
+									"key": "available_day",
+									"value": "string"
+								},
+								{
+									"key": "is_certified",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/services/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"services",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/services/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"services",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"price\": 1,\n    \"price_type\": \"string\",\n    \"currency\": \"string\",\n    \"phone_number\": \"+1234567890\",\n    \"purpose\": \"string\",\n    \"subcategory_id\": \"string\",\n    \"lat\": 1,\n    \"lng\": 1,\n    \"city\": \"string\",\n    \"area\": \"string\",\n    \"service_type\": \"string\",\n    \"availability\": \"string\",\n    \"experience_years\": 1,\n    \"qualification\": \"string\",\n    \"images.*\": \"\",\n    \"features\": \"string\",\n    \"qualifications\": \"string\",\n    \"service_area\": \"string\",\n    \"is_mobile\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/services",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getServiceFilters [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/services/filters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"services",
+								"filters"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "jobs",
+			"item": [
+				{
+					"name": "index [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/jobs?subcategory_id=1&job_type=string&attendance_type=string&min_salary=1&max_salary=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobs"
+							],
+							"query": [
+								{
+									"key": "subcategory_id",
+									"value": "1"
+								},
+								{
+									"key": "job_type",
+									"value": "string"
+								},
+								{
+									"key": "attendance_type",
+									"value": "string"
+								},
+								{
+									"key": "min_salary",
+									"value": "1"
+								},
+								{
+									"key": "max_salary",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "jobSearch [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/jobs/search?city=string&area=string&lat=24.7136&lng=46.6753&radius=10&job_type=string&subcategory_id=1&min_salary=1&max_salary=1&experience_level=string&education_level=string&is_remote=string&company_size=string&industry=string&benefits[]=option1&benefits[]=option2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobs",
+								"search"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "string"
+								},
+								{
+									"key": "area",
+									"value": "string"
+								},
+								{
+									"key": "lat",
+									"value": "24.7136"
+								},
+								{
+									"key": "lng",
+									"value": "46.6753"
+								},
+								{
+									"key": "radius",
+									"value": "10"
+								},
+								{
+									"key": "job_type",
+									"value": "string"
+								},
+								{
+									"key": "subcategory_id",
+									"value": "1"
+								},
+								{
+									"key": "min_salary",
+									"value": "1"
+								},
+								{
+									"key": "max_salary",
+									"value": "1"
+								},
+								{
+									"key": "experience_level",
+									"value": "string"
+								},
+								{
+									"key": "education_level",
+									"value": "string"
+								},
+								{
+									"key": "is_remote",
+									"value": "string"
+								},
+								{
+									"key": "company_size",
+									"value": "string"
+								},
+								{
+									"key": "industry",
+									"value": "string"
+								},
+								{
+									"key": "benefits[]",
+									"value": "option1"
+								},
+								{
+									"key": "benefits[]",
+									"value": "option2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/jobs/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobs",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/jobs/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobs",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"price\": 1,\n    \"price_type\": \"string\",\n    \"currency\": \"string\",\n    \"phone_number\": \"+1234567890\",\n    \"purpose\": \"string\",\n    \"subcategory_id\": \"string\",\n    \"lat\": 1,\n    \"lng\": 1,\n    \"city\": \"string\",\n    \"area\": \"string\",\n    \"company_name\": \"John\",\n    \"job_type\": \"string\",\n    \"employment_type\": \"string\",\n    \"experience_level\": \"string\",\n    \"education_level\": \"string\",\n    \"salary_range\": \"string\",\n    \"application_deadline\": \"2024-01-01\",\n    \"benefits\": \"string\",\n    \"images.*\": \"\",\n    \"features\": \"string\",\n    \"job_title\": \"string\",\n    \"attendance_type\": \"string\",\n    \"job_category\": \"string\",\n    \"job_subcategory\": \"string\",\n    \"gender_preference\": \"string\",\n    \"salary\": \"string\",\n    \"salary_period\": \"string\",\n    \"salary_currency\": \"string\",\n    \"is_salary_negotiable\": \"string\",\n    \"experience_years_min\": \"string\",\n    \"required_language\": \"string\",\n    \"company_size\": \"string\",\n    \"application_link\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/jobs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getJobFilters [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/jobs/filters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobs",
+								"filters"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bids",
+			"item": [
+				{
+					"name": "index [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bids?subcategory_id=1&bid_type=string&sector=string&min_investment=1&max_investment=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bids"
+							],
+							"query": [
+								{
+									"key": "subcategory_id",
+									"value": "1"
+								},
+								{
+									"key": "bid_type",
+									"value": "string"
+								},
+								{
+									"key": "sector",
+									"value": "string"
+								},
+								{
+									"key": "min_investment",
+									"value": "1"
+								},
+								{
+									"key": "max_investment",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bids/search?subcategory_id=1&bid_type=string&sector=string&organization_name=string&min_budget=1&max_budget=1&submission_deadline=string&city=string&area=string&lat=24.7136&lng=46.6753&radius=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bids",
+								"search"
+							],
+							"query": [
+								{
+									"key": "subcategory_id",
+									"value": "1"
+								},
+								{
+									"key": "bid_type",
+									"value": "string"
+								},
+								{
+									"key": "sector",
+									"value": "string"
+								},
+								{
+									"key": "organization_name",
+									"value": "string"
+								},
+								{
+									"key": "min_budget",
+									"value": "1"
+								},
+								{
+									"key": "max_budget",
+									"value": "1"
+								},
+								{
+									"key": "submission_deadline",
+									"value": "string"
+								},
+								{
+									"key": "city",
+									"value": "string"
+								},
+								{
+									"key": "area",
+									"value": "string"
+								},
+								{
+									"key": "lat",
+									"value": "24.7136"
+								},
+								{
+									"key": "lng",
+									"value": "46.6753"
+								},
+								{
+									"key": "radius",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bids/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bids",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bids/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bids",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"price\": 1,\n    \"price_type\": \"string\",\n    \"currency\": \"string\",\n    \"phone_number\": \"+1234567890\",\n    \"purpose\": \"string\",\n    \"subcategory_id\": \"string\",\n    \"lat\": 1,\n    \"lng\": 1,\n    \"city\": \"string\",\n    \"area\": \"string\",\n    \"bid_type\": \"string\",\n    \"organization_name\": \"John\",\n    \"sector\": \"string\",\n    \"project_budget\": 1,\n    \"project_duration\": \"string\",\n    \"submission_deadline\": \"2024-01-01\",\n    \"business_plan\": \"string\",\n    \"financial_projections\": \"string\",\n    \"documents\": \"string\",\n    \"requirements\": \"string\",\n    \"terms_and_conditions\": \"string\",\n    \"images.*\": \"\",\n    \"features\": \"string\",\n    \"bid_code\": \"string\",\n    \"main_category\": \"string\",\n    \"contact_phone\": \"string\",\n    \"contact_email\": \"string\",\n    \"application_link\": \"string\",\n    \"submission_start_date\": \"string\",\n    \"submission_end_date\": \"string\",\n    \"is_facility_under_construction\": \"string\",\n    \"investment_amount_min\": \"string\",\n    \"investment_amount_max\": \"string\",\n    \"expected_return\": \"string\",\n    \"return_period\": \"string\",\n    \"investment_term\": \"string\",\n    \"risk_level\": \"string\",\n    \"is_equity\": \"string\",\n    \"is_debt\": \"string\",\n    \"equity_percentage\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/bids",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bids"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "community",
+			"item": [
+				{
+					"name": "index [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/community/home?lat=24.7136&lng=46.6753",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"community",
+								"home"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "24.7136"
+								},
+								{
+									"key": "lng",
+									"value": "46.6753"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getListingsByCategory [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/community/category",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"community",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getListingsBySubcategory [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/community/subcategory",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"community",
+								"subcategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFeaturedListings [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/community/featured-listings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"community",
+								"featured-listings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRecentListings [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/community/recent-listings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"community",
+								"recent-listings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPopularListings [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/community/popular-listings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"community",
+								"popular-listings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNearbyListings [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/community/nearby-listings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"community",
+								"nearby-listings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRecommendedListings [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/community/recommended-listings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"community",
+								"recommended-listings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "search",
+			"item": [
+				{
+					"name": "search [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/search?keyword=string&category_id=1&subcategory_id=1&city=string&area=string&lat=24.7136&lng=46.6753&radius=10&min_price=1&max_price=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "string"
+								},
+								{
+									"key": "category_id",
+									"value": "1"
+								},
+								{
+									"key": "subcategory_id",
+									"value": "1"
+								},
+								{
+									"key": "city",
+									"value": "string"
+								},
+								{
+									"key": "area",
+									"value": "string"
+								},
+								{
+									"key": "lat",
+									"value": "24.7136"
+								},
+								{
+									"key": "lng",
+									"value": "46.6753"
+								},
+								{
+									"key": "radius",
+									"value": "10"
+								},
+								{
+									"key": "min_price",
+									"value": "1"
+								},
+								{
+									"key": "max_price",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPopularSearches [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/search/popular",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search",
+								"popular"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRecentSearches [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/search/recent",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"search",
+								"recent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "getListingReports [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/listings/{id}/reports",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"listings",
+								"{id}",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "images",
+			"item": [
+				{
+					"name": "delete [DELETE]",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/images/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"images",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setPrimary [PUT]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/images/{id}/primary",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"images",
+								"{id}",
+								"primary"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reviews",
+			"item": [
+				{
+					"name": "createServiceProviderReview [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"provider_id\": \"string\",\n    \"rating\": 1,\n    \"comment\": \"string\",\n    \"listing_id\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/reviews/service-providers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reviews",
+								"service-providers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateServiceProviderReview [PUT]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 1,\n    \"comment\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/reviews/service-providers/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reviews",
+								"service-providers",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteServiceProviderReview [DELETE]",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/reviews/service-providers/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reviews",
+								"service-providers",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createListingReview [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"listing_id\": \"string\",\n    \"rating\": 1,\n    \"comment\": \"string\",\n    \"title\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/reviews/listings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reviews",
+								"listings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateListingReview [PUT]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 1,\n    \"comment\": \"string\",\n    \"title\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/reviews/listings/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reviews",
+								"listings",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteListingReview [DELETE]",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/reviews/listings/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reviews",
+								"listings",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "service-providers",
+			"item": [
+				{
+					"name": "getServiceProviderReviews [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/service-providers/{id}/reviews?min_rating=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"service-providers",
+								"{id}",
+								"reviews"
+							],
+							"query": [
+								{
+									"key": "min_rating",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getServiceProviderProfile [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/service-providers/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"service-providers",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reports",
+			"item": [
+				{
+					"name": "reportListing [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"listing_id\": \"string\",\n    \"reason\": \"string\",\n    \"details\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/reports/listings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reports",
+								"listings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reportServiceProvider [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"service_provider_id\": \"string\",\n    \"reason\": \"string\",\n    \"details\": \"string\",\n    \"listing_id\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/reports/service-providers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reports",
+								"service-providers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getListingReportReasons [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/reports/listings/reasons",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reports",
+								"listings",
+								"reasons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getServiceProviderReportReasons [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/reports/service-providers/reasons",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reports",
+								"service-providers",
+								"reasons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getListingReports [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/reports/listings?status=string&listing_id=1&listing_type=string&reason=string",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reports",
+								"listings"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "string"
+								},
+								{
+									"key": "listing_id",
+									"value": "1"
+								},
+								{
+									"key": "listing_type",
+									"value": "string"
+								},
+								{
+									"key": "reason",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getServiceProviderReports [GET]",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/reports/service-providers?status=string&service_provider_id=1&reason=string",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reports",
+								"service-providers"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "string"
+								},
+								{
+									"key": "service_provider_id",
+									"value": "1"
+								},
+								{
+									"key": "reason",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateListingReportStatus [PUT]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"string\",\n    \"admin_notes\": \"string\",\n    \"action_taken\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/reports/listings/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reports",
+								"listings",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateServiceProviderReportStatus [PUT]",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"string\",\n    \"admin_notes\": \"string\",\n    \"action_taken\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/reports/service-providers/{id}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reports",
+								"service-providers",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "language",
+			"item": [
+				{
+					"name": "getTranslations [GET]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/language/translations/{locale?}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"language",
+								"translations",
+								"{locale"
+							],
+							"query": [
+								{
+									"key": "}",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "switchLocale [POST]",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/language/switch",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"language",
+								"switch"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

@@ -10,6 +10,7 @@ import '../bloc/profile_event.dart';
 import '../bloc/profile_state.dart';
 import '../widgets/profile_info_item.dart';
 import 'package:wejha/injection_container.dart' as di;
+import 'package:wejha/features/auth/google_auth/presentation/bloc/google_auth_bloc.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -46,8 +47,11 @@ class _ProfilePageState extends State<ProfilePage> {
             // Navigate to welcome page
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
-                builder: (_) => BlocProvider(
-                  create: (_) => di.sl<LoginBloc>(),
+                builder: (_) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(create: (_) => di.sl<LoginBloc>()),
+                    BlocProvider(create: (_) => di.sl<GoogleAuthBloc>()),
+                  ],
                   child: const WelcomePage(),
                 ),
               ),
@@ -188,7 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ProfileInfoItem(
                           icon: Icons.verified_user,
                           title: 'نوع الحساب',
-                          value: user.type == 'user' ? 'مستخدم' : user.type,
+                          value: user.roleId == '3' ? 'مستخدم' : (user.roleId == '2' ? 'بائع-تاجر' : user.role),
                         ),
                         SizedBox(height: 16.h),
                         ProfileInfoItem(

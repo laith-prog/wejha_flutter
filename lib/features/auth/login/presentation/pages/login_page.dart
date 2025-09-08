@@ -59,6 +59,15 @@ class _LoginPageState extends State<LoginPage> {
       body: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
+            // Show success message
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('تم تسجيل الدخول بنجاح'),
+                backgroundColor: Colors.green,
+                duration: Duration(seconds: 2),
+              ),
+            );
+            
             // Save tokens to SharedPreferences
             _tokenManager.saveTokens(state.loginResponse.authToken).then((_) {
               debugPrint('Tokens saved successfully after login');
@@ -72,13 +81,6 @@ class _LoginPageState extends State<LoginPage> {
                 backgroundColor: Colors.red,
               ),
             );
-          } else if (state is GoogleOAuthCallbackSuccess) {
-            // Save tokens for Google OAuth login as well
-            _tokenManager.saveTokens(state.loginResponse.authToken).then((_) {
-              debugPrint('Tokens saved successfully after Google OAuth');
-              // Navigate to home page after successful login
-              Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false);
-            });
           }
         },
         builder: (context, state) {

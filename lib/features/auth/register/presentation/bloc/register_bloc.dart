@@ -119,7 +119,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
     result.fold(
       (failure) => emit(RegistrationError(failure: failure)),
-      (response) => emit(RegistrationCompleted(registerResponse: response)),
+      (response) {
+        // Don't store tokens, just emit completion state
+        emit(RegistrationCompleted(registerResponse: response));
+      },
     );
   }
   

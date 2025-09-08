@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   final String? hintText;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
+  final void Function(String)? onSubmitted;
   final TextInputType? keyboardType;
   final bool obscureText;
   final Widget? suffixIcon;
@@ -22,6 +23,7 @@ class CustomTextField extends StatelessWidget {
     this.hintText,
     this.validator,
     this.onChanged,
+    this.onSubmitted,
     this.keyboardType,
     this.obscureText = false,
     this.suffixIcon,
@@ -34,9 +36,12 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: width??327.w,
-      height: height??48.h,
+      // Use constraints to maintain minimum height even with error text
+      constraints: BoxConstraints(
+        minHeight: height??48.h,
+      ),
       child: TextFormField(
         controller: controller,
         obscureText: obscureText,
@@ -84,9 +89,17 @@ class CustomTextField extends StatelessWidget {
           fillColor: AppColors.surface,
           suffixIcon: suffixIcon,
           prefixIcon: prefixIcon,
+          // Make error text appear outside the field to maintain field height
+          errorStyle: TextStyle(
+            color: AppColors.error,
+            fontSize: 10.sp,
+          ),
+          // Ensure the field doesn't resize when error appears
+          isDense: true,
         ),
         validator: validator,
         onChanged: onChanged,
+        onFieldSubmitted: onSubmitted,
       ),
     );
   }

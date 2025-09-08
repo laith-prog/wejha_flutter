@@ -9,6 +9,7 @@ import 'package:wejha/features/splash/presentation/bloc/splash_bloc.dart';
 import 'package:wejha/features/splash/presentation/bloc/splash_event.dart';
 import 'package:wejha/features/splash/presentation/bloc/splash_state.dart';
 import 'package:wejha/injection_container.dart' as di;
+import 'package:wejha/features/auth/google_auth/presentation/bloc/google_auth_bloc.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -77,18 +78,17 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           if (state is AuthenticatedState) {
             // User is authenticated, navigate to home page
             debugPrint('User is authenticated, navigating to home page');
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (_) => const HomePage(),
-              ),
-            );
+            Navigator.of(context).pushReplacementNamed('/home');
           } else if (state is UnauthenticatedState) {
             // User is not authenticated, navigate to welcome page
             debugPrint('User is not authenticated, navigating to welcome page');
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (_) => BlocProvider(
-                  create: (_) => di.sl<LoginBloc>(),
+                builder: (_) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(create: (_) => di.sl<LoginBloc>()),
+                    BlocProvider(create: (_) => di.sl<GoogleAuthBloc>()),
+                  ],
                   child: const WelcomePage(),
                 ),
               ),
@@ -103,8 +103,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             );
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (_) => BlocProvider(
-                  create: (_) => di.sl<LoginBloc>(),
+                builder: (_) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(create: (_) => di.sl<LoginBloc>()),
+                    BlocProvider(create: (_) => di.sl<GoogleAuthBloc>()),
+                  ],
                   child: const WelcomePage(),
                 ),
               ),

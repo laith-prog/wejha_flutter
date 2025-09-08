@@ -50,12 +50,12 @@ class _RegisterPageState extends State<RegisterPage> {
           } else if (state is RegistrationCompleted) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text('Registration completed successfully'),
+                content: Text('تم إنشاء الحساب بنجاح، يرجى تسجيل الدخول'),
                 backgroundColor: Colors.green,
               ),
             );
-            // Navigate to home or login
-            Navigator.of(context).pop();
+            // Navigate to login page instead of just popping
+            Navigator.of(context).pushReplacementNamed('/login');
           } else if (state is VerificationCodeError ||
               state is CodeVerificationError ||
               state is RegistrationError) {

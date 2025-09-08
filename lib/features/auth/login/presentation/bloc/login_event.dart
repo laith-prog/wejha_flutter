@@ -20,13 +20,6 @@ class LoginWithEmailPasswordEvent extends LoginEvent {
   List<Object?> get props => [email, password];
 }
 
-class LoginWithGoogleEvent extends LoginEvent {
-  const LoginWithGoogleEvent();
-
-  @override
-  List<Object?> get props => [];
-}
-
 class LogoutEvent extends LoginEvent {
   const LogoutEvent();
 
@@ -57,14 +50,4 @@ class UpdateLoginFormEvent extends LoginEvent {
 
   @override
   List<Object?> get props => [email, password];
-}
-
-// Add event for handling Google OAuth callback
-class HandleGoogleOAuthCallbackEvent extends LoginEvent {
-  final Uri uri;
-
-  const HandleGoogleOAuthCallbackEvent({required this.uri});
-
-  @override
-  List<Object?> get props => [uri];
 } 

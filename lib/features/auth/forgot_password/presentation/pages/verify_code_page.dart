@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,16 +28,80 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     6,
     (index) => FocusNode(),
   );
+  
+  // Timer for resend code functionality
+  Timer? _timer;
+  int _remainingSeconds = 60;
+  bool _canResendCode = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Add listeners to focus nodes to rebuild when focus changes
+    for (var node in _focusNodes) {
+      node.addListener(() {
+        setState(() {});
+      });
+    }
+    
+    // Set focus to first field when page opens
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FocusScope.of(context).requestFocus(_focusNodes[0]);
+    });
+    
+    // Start countdown timer
+    _startCountdownTimer();
+  }
 
   @override
   void dispose() {
+    _timer?.cancel();
     for (var controller in _otpControllers) {
       controller.dispose();
     }
     for (var node in _focusNodes) {
+      node.removeListener(() {});
       node.dispose();
     }
     super.dispose();
+  }
+  
+  void _startCountdownTimer() {
+    setState(() {
+      _remainingSeconds = 60;
+      _canResendCode = false;
+    });
+    
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_remainingSeconds > 0) {
+          _remainingSeconds--;
+        } else {
+          _canResendCode = true;
+          timer.cancel();
+        }
+      });
+    });
+  }
+  
+  void _resendCode() {
+    if (_canResendCode) {
+      // Dispatch forgot password event again to resend code
+      context.read<ForgotPasswordBloc>().add(
+        SendForgotPasswordEmailEvent(email: widget.email),
+      );
+      
+      // Reset the timer
+      _startCountdownTimer();
+      
+      // Show message
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('تم إرسال رمز جديد إلى بريدك الإلكتروني'),
+          backgroundColor: Colors.green,
+        ),
+      );
+    }
   }
 
   void _onOtpChanged(String value, int index) {
@@ -44,19 +109,38 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
       // Move to next field
       _focusNodes[index].unfocus();
       FocusScope.of(context).requestFocus(_focusNodes[index + 1]);
+    } else if (value.length > 1) {
+      // Handle pasting a full code
+      final fullCode = value;
+      if (fullCode.length <= 6) {
+        for (int i = 0; i < fullCode.length; i++) {
+          if (i < 6) {
+            _otpControllers[i].text = fullCode[i];
+          }
+        }
+        // Focus on the next empty field or the last field
+        int nextIndex = fullCode.length < 6 ? fullCode.length : 5;
+        _focusNodes[index].unfocus();
+        if (nextIndex < 6) {
+          FocusScope.of(context).requestFocus(_focusNodes[nextIndex]);
+        }
+      }
     }
   }
 
   void _handleKeyEvent(RawKeyEvent event, int index) {
     if (event is RawKeyDownEvent) {
-      if (event.logicalKey == LogicalKeyboardKey.backspace && 
-          _otpControllers[index].text.isEmpty && 
-          index > 0) {
-        // Move to previous field on backspace if current field is empty
-        _focusNodes[index].unfocus();
-        FocusScope.of(context).requestFocus(_focusNodes[index - 1]);
-        // Optional: Clear the previous field
-        // _otpControllers[index - 1].clear();
+      if (event.logicalKey == LogicalKeyboardKey.backspace) {
+        if (_otpControllers[index].text.isEmpty && index > 0) {
+          // Move to previous field on backspace if current field is empty
+          _focusNodes[index].unfocus();
+          FocusScope.of(context).requestFocus(_focusNodes[index - 1]);
+          // Clear the previous field
+          _otpControllers[index - 1].clear();
+        } else if (_otpControllers[index].text.isNotEmpty) {
+          // Clear current field
+          _otpControllers[index].clear();
+        }
       }
     }
   }
@@ -124,9 +208,6 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                       ),
                       textDirection: TextDirection.rtl,
                       textAlign: TextAlign.start,
-
-
-
                     ),
                     SizedBox(height: 8.h),
                     // Description
@@ -151,7 +232,16 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                             width: 45.w,
                             height: 50.h,
                             margin: EdgeInsets.symmetric(horizontal: 5.w),
-
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: _focusNodes[index].hasFocus 
+                                    ? Theme.of(context).primaryColor 
+                                    : Colors.grey.shade300,
+                                width: 1.5,
+                              ),
+                            ),
                             child: Center(
                               child: RawKeyboardListener(
                                 focusNode: FocusNode(),
@@ -192,7 +282,26 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 400.h), // Spacer
+                    SizedBox(height: 24.h),
+                    // Resend code section
+                    Center(
+                      child: TextButton(
+                        onPressed: _canResendCode ? _resendCode : null,
+                        child: Text(
+                          _canResendCode 
+                              ? 'إعادة إرسال الرمز' 
+                              : 'إعادة إرسال الرمز بعد $_remainingSeconds ثانية',
+                          style: TextStyle(
+                            color: _canResendCode 
+                                ? Theme.of(context).primaryColor 
+                                : Colors.grey,
+                            fontSize: 14.sp,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 320.h), // Spacer
                     // Verify Button
                     SizedBox(
                       width: double.infinity,
@@ -220,7 +329,6 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                                   }
                                 }
                               },
-
                         child: state is VerifyingResetCode
                             ? const SizedBox(
                                 width: 24,

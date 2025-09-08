@@ -36,6 +36,18 @@ class _RegisterStepTwoState extends State<RegisterStepTwo> {
     context.read<RegisterBloc>().add(UpdateRegisterFormEvent(
       roleId: _roleId,
     ));
+    
+    // Add listeners to focus nodes to rebuild when focus changes
+    for (var node in _focusNodes) {
+      node.addListener(() {
+        setState(() {});
+      });
+    }
+    
+    // Set focus to first field when page opens
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FocusScope.of(context).requestFocus(_focusNodes[0]);
+    });
   }
 
   @override
@@ -44,15 +56,49 @@ class _RegisterStepTwoState extends State<RegisterStepTwo> {
       controller.dispose();
     }
     for (var node in _focusNodes) {
+      node.removeListener(() {});
       node.dispose();
     }
     super.dispose();
   }
 
   void _onOtpChanged(String value, int index) {
-    if (value.length == 1 && index < 5) {  // Changed from index < 3 to index < 5
+    if (value.length == 1 && index < 5) {
       _focusNodes[index].unfocus();
       FocusScope.of(context).requestFocus(_focusNodes[index + 1]);
+    } else if (value.length > 1) {
+      // Handle pasting a full code
+      final fullCode = value;
+      if (fullCode.length <= 6) {
+        for (int i = 0; i < fullCode.length; i++) {
+          if (i < 6) {
+            _otpControllers[i].text = fullCode[i];
+          }
+        }
+        // Focus on the next empty field or the last field
+        int nextIndex = fullCode.length < 6 ? fullCode.length : 5;
+        _focusNodes[index].unfocus();
+        if (nextIndex < 6) {
+          FocusScope.of(context).requestFocus(_focusNodes[nextIndex]);
+        }
+      }
+    }
+  }
+  
+  void _handleKeyEvent(RawKeyEvent event, int index) {
+    if (event is RawKeyDownEvent) {
+      if (event.logicalKey == LogicalKeyboardKey.backspace) {
+        if (_otpControllers[index].text.isEmpty && index > 0) {
+          // Move to previous field on backspace if current field is empty
+          _focusNodes[index].unfocus();
+          FocusScope.of(context).requestFocus(_focusNodes[index - 1]);
+          // Clear the previous field
+          _otpControllers[index - 1].clear();
+        } else if (_otpControllers[index].text.isNotEmpty) {
+          // Clear current field
+          _otpControllers[index].clear();
+        }
+      }
     }
   }
 
@@ -86,7 +132,6 @@ class _RegisterStepTwoState extends State<RegisterStepTwo> {
                 ),
                 SizedBox(height: 45.h),
 
-
                 // Title
                 Text(
                   'إثبات ملكية الحساب',
@@ -100,47 +145,68 @@ class _RegisterStepTwoState extends State<RegisterStepTwo> {
                 SizedBox(height: 16.h),
                 // Description
                 Text(
-                  'سوف تتلقى رمز التحقق الذي سيطهر في صندوق الوارد الخاص ببريدك الإلكتروني أو في قائمة البريد المنهجي',
+                  'سوف تتلقى رمز التحقق الذي سيظهر في صندوق الوارد الخاص ببريدك الإلكتروني أو في قائمة البريد المنهجي',
                   style: TextStyle(fontSize: 10.sp, color: Colors.grey),
                   textAlign: TextAlign.end,
                 ),
                 SizedBox(height: 40.h),
-                // OTP Input Fields - Simplified version like in the image
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    6,
-                    (index) => Container(
-                      height: 57.h,
-                      width: 52.w, // Each field is 72 width (72 x 4 = 288)
-                      margin: EdgeInsets.only(
-                        right: index < 5 ? 3.w : 0,
-                      ), // 13 spacing x 3 gaps = 39 → 288 + 39 = 327
-                      child: TextFormField(
-                        controller: _otpControllers[index],
-                        focusNode: _focusNodes[index],
-                        decoration: const InputDecoration(
-                          border: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
+                // OTP Input Fields - Improved design similar to verify_code_page
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                      6,
+                      (index) => Container(
+                        width: 45.w,
+                        height: 50.h,
+                        margin: EdgeInsets.symmetric(horizontal: 5.w),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade100,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: _focusNodes[index].hasFocus 
+                                ? const Color(0xFFD63022)
+                                : Colors.grey.shade300,
+                            width: 1.5,
                           ),
-                          counterText: '',
-                          contentPadding: EdgeInsets.only(bottom: 10),
                         ),
-                        style: TextStyle(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
+                        child: Center(
+                          child: RawKeyboardListener(
+                            focusNode: FocusNode(),
+                            onKey: (event) => _handleKeyEvent(event, index),
+                            child: TextFormField(
+                              controller: _otpControllers[index],
+                              focusNode: _focusNodes[index],
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                counterText: '',
+                                contentPadding: EdgeInsets.zero,
+                                errorStyle: const TextStyle(
+                                  height: 0,
+                                  fontSize: 0,
+                                ),
+                              ),
+                              style: TextStyle(
+                                fontSize: 24.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              keyboardType: TextInputType.number,
+                              textAlign: TextAlign.center,
+                              inputFormatters: [
+                                LengthLimitingTextInputFormatter(1),
+                                FilteringTextInputFormatter.digitsOnly,
+                              ],
+                              onChanged: (value) => _onOtpChanged(value, index),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return '';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
                         ),
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(1),
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                        onChanged: (value) => _onOtpChanged(value, index),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) return '';
-                          return null;
-                        },
                       ),
                     ),
                   ),

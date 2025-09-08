@@ -9,7 +9,8 @@ class Profile extends Equatable {
   final String? gender;
   final DateTime? birthday;
   final String? photo;
-  final String type;
+  final String role;
+  final String roleId;
   final DateTime? emailVerifiedAt;
   final String authProvider;
   final DateTime createdAt;
@@ -24,7 +25,8 @@ class Profile extends Equatable {
     this.gender,
     this.birthday,
     this.photo,
-    required this.type,
+    required this.role,
+    required this.roleId,
     this.emailVerifiedAt,
     required this.authProvider,
     required this.createdAt,
@@ -41,7 +43,8 @@ class Profile extends Equatable {
         gender,
         birthday,
         photo,
-        type,
+        role,
+        roleId,
         emailVerifiedAt,
         authProvider,
         createdAt,

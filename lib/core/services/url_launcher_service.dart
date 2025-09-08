@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart' as url_launcher;
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class UrlLauncherService {
   // Singleton instance
@@ -8,73 +7,98 @@ class UrlLauncherService {
   factory UrlLauncherService() => _instance;
   UrlLauncherService._internal();
 
-  /// Launch a URL and handle Google OAuth URLs specially
+  /// Launch a URL using WebView
   Future<bool> launchUrl(String urlString) async {
-    debugPrint('Attempting to launch URL: $urlString');
+    debugPrint('Attempting to launch URL in WebView: $urlString');
     
-    final Uri url = Uri.parse(urlString);
-    
-    // Check if this is a Google OAuth URL
-    if (url.path.contains('/api/v1/auth/google') || url.path.contains('google/callback')) {
-      debugPrint('Detected Google OAuth URL, using external browser');
-      
-      // For OAuth URLs, we need to use the external browser
-      // This ensures proper cookie handling and session management
-      return await _launchExternalBrowser(urlString);
-    }
-    
-    // For regular URLs, we can use the default launch behavior
-    return await _launchInApp(url);
-  }
-  
-  /// Launch URL in external browser (most reliable for OAuth)
-  Future<bool> _launchExternalBrowser(String url) async {
     try {
-      debugPrint('Launching in external browser: $url');
-      
-      // Use canLaunchUrlString first to check if the URL can be handled
-      if (await canLaunchUrlString(url)) {
-        final bool launched = await launchUrlString(
-          url,
-          mode: LaunchMode.externalApplication, // Force external browser
-        );
-        
-        debugPrint('URL launch result: $launched');
-        return launched;
-      } else {
-        debugPrint('Cannot launch URL: $url');
-        return false;
-      }
+      // Return true to indicate successful handling
+      // The actual navigation will happen in the WebViewPage
+      return true;
     } catch (e) {
-      debugPrint('Error launching URL: $e');
+      debugPrint('Error preparing WebView URL: $e');
       return false;
     }
   }
   
-  /// Launch URL in the app
-  Future<bool> _launchInApp(Uri url) async {
-    try {
-      debugPrint('Launching in app: $url');
-      
-      if (await url_launcher.canLaunchUrl(url)) {
-        final bool launched = await url_launcher.launchUrl(
-          url,
-          mode: url_launcher.LaunchMode.inAppWebView,
-          webViewConfiguration: const url_launcher.WebViewConfiguration(
-            enableJavaScript: true,
-            enableDomStorage: true,
+  /// Navigate to WebView page
+  void navigateToWebView(BuildContext context, String url, {String title = 'Web Page'}) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WebViewPage(url: url, title: title),
+      ),
+    );
+  }
+}
+
+/// WebView page to display web content
+class WebViewPage extends StatefulWidget {
+  final String url;
+  final String title;
+
+  const WebViewPage({
+    Key? key,
+    required this.url,
+    this.title = 'Web Page',
+  }) : super(key: key);
+
+  @override
+  State<WebViewPage> createState() => _WebViewPageState();
+}
+
+class _WebViewPageState extends State<WebViewPage> {
+  late final WebViewController controller;
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageStarted: (String url) {
+            setState(() {
+              isLoading = true;
+            });
+          },
+          onPageFinished: (String url) {
+            setState(() {
+              isLoading = false;
+            });
+          },
+          onWebResourceError: (WebResourceError error) {
+            debugPrint('WebView error: ${error.description}');
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(widget.url));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              controller.reload();
+            },
           ),
-        );
-        
-        debugPrint('URL launch result: $launched');
-        return launched;
-      } else {
-        debugPrint('Cannot launch URL: $url');
-        return false;
-      }
-    } catch (e) {
-      debugPrint('Error launching URL: $e');
-      return false;
-    }
+        ],
+      ),
+      body: Stack(
+        children: [
+          WebViewWidget(controller: controller),
+          if (isLoading)
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
+        ],
+      ),
+    );
   }
 } 

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1084752019943",
+    "project_id": "wejha-39be4",
+    "storage_bucket": "wejha-39be4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084752019943:android:53d4c921f5337360a1fd42",
+        "android_client_info": {
+          "package_name": "com.example.wejha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1084752019943-026fbr4s24a6h2cl91tbu93ham90s5i8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wejha",
+            "certificate_hash": "f6dc7a338701ed5867b36ed5ffba513a84781958"
+          }
+        },
+        {
+          "client_id": "1084752019943-i044qrnqf0h0eum4vrb6rb8mnqo0prtm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy2z-Irqrih_TQeztXC7QRDS_PPhE48RY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1084752019943-i044qrnqf0h0eum4vrb6rb8mnqo0prtm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+} 

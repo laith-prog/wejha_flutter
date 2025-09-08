@@ -2,30 +2,62 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'firebase_options.dart';
 
 import 'package:wejha/core/config/environment.dart';
 import 'package:wejha/core/utils/environment_checker.dart';
-import 'package:wejha/core/services/deep_link_service.dart';
 import 'package:wejha/features/auth/register/presentation/bloc/register_bloc.dart';
 import 'package:wejha/features/auth/register/presentation/pages/register_page.dart';
 import 'package:wejha/features/auth/login/presentation/bloc/login_bloc.dart';
-import 'package:wejha/features/auth/login/presentation/bloc/login_event.dart';
 import 'package:wejha/features/auth/login/presentation/pages/login_page.dart';
 import 'package:wejha/features/auth/forgot_password/presentation/bloc/forgot_password_bloc.dart';
 import 'package:wejha/features/auth/forgot_password/presentation/pages/forgot_password_page.dart';
 import 'package:wejha/features/auth/forgot_password/presentation/pages/verify_code_page.dart';
 import 'package:wejha/features/auth/welcome/presentation/pages/welcome_page.dart';
+import 'package:wejha/features/auth/google_auth/presentation/bloc/google_auth_bloc.dart';
+import 'package:wejha/features/auth/google_auth/presentation/pages/complete_profile_page.dart';
+
 import 'package:wejha/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:wejha/features/profile/presentation/pages/profile_page.dart';
 import 'package:wejha/features/home/presentation/pages/home_page.dart';
 import 'package:wejha/features/splash/presentation/bloc/splash_bloc.dart';
 import 'package:wejha/features/splash/presentation/pages/splash_screen.dart';
+import 'package:wejha/features/community/search/presentation/bloc/search_bloc.dart';
+import 'package:wejha/features/community/search/presentation/pages/search_page.dart';
 import 'package:wejha/core/theme/app_theme.dart';
 import 'injection_container.dart' as di;
 
 // Set this to change environment
 const Environment currentEnvironment = Environment.production;
 // For production use: Environment.production
+
+// Global variable to track if Firebase is initialized
+bool isFirebaseInitialized = false;
+
+Future<void> initializeFirebase() async {
+  if (isFirebaseInitialized) return;
+  
+  try {
+    debugPrint('Attempting to initialize Firebase with options: ${DefaultFirebaseOptions.currentPlatform}');
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    isFirebaseInitialized = true;
+    debugPrint('Firebase initialized successfully');
+    
+    // Verify Firebase Auth is working
+    try {
+      final auth = FirebaseAuth.instance;
+      debugPrint('Firebase Auth instance created: ${auth.hashCode}');
+    } catch (e) {
+      debugPrint('Error accessing Firebase Auth: $e');
+    }
+  } catch (e) {
+    debugPrint('Failed to initialize Firebase: $e');
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,28 +66,15 @@ void main() async {
   EnvironmentConfig.setEnvironment(currentEnvironment);
   EnvironmentChecker.printEnvironmentInfo();
   
+  // Try to initialize Firebase, but continue even if it fails
+  await initializeFirebase();
+  
   await di.init();
   
-  // Initialize app without requiring deep link service to work
+  // Initialize app
   runApp(const MyApp());
-  
-  // Initialize deep link service after app has started
-  // This way, if it fails, the app is already running
-  _initializeDeepLinkService();
 }
 
-// Initialize deep link service separately to avoid blocking app startup
-Future<void> _initializeDeepLinkService() async {
-  try {
-    await di.sl<DeepLinkService>().init();
-    debugPrint('Deep link service initialized successfully');
-  } catch (e) {
-    debugPrint('Error initializing DeepLinkService: $e');
-    // App continues running even if deep link service fails
-  }
-}
-
-// Initialize the blocs only when the screen needs it
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -64,54 +83,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  StreamSubscription? _deepLinkSubscription;
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   void initState() {
     super.initState();
-    
-    // Listen for deep links with error handling
-    _setupDeepLinkListener();
-  }
-  
-  void _setupDeepLinkListener() {
-    try {
-      _deepLinkSubscription = di.sl<DeepLinkService>().deepLinkStream.listen((uri) {
-        debugPrint('Received deep link in main.dart: $uri');
-        _handleDeepLink(uri);
-      }, onError: (error) {
-        debugPrint('Error in deep link stream: $error');
-      });
-    } catch (e) {
-      debugPrint('Could not subscribe to deep links: $e');
-    }
-  }
-  
-  void _handleDeepLink(Uri uri) {
-    debugPrint('Handling deep link: $uri');
-    
-    // Check for Google OAuth URL patterns
-    if (uri.path.contains('google/callback') || 
-        uri.path.contains('/api/v1/auth/google')) {
-      debugPrint('Detected Google OAuth callback');
-      
-      // Get the login bloc and dispatch the event
-      final loginBloc = di.sl<LoginBloc>();
-      loginBloc.add(HandleGoogleOAuthCallbackEvent(uri: uri));
-      
-      // Navigate to the appropriate screen after successful OAuth
-      // This depends on your app's flow - adjust as needed
-      Future.delayed(const Duration(milliseconds: 500), () {
-        _navigatorKey.currentState?.pushNamedAndRemoveUntil('/login', (route) => false);
-      });
-    }
-  }
-  
-  @override
-  void dispose() {
-    _deepLinkSubscription?.cancel();
-    super.dispose();
   }
   
   @override
@@ -173,6 +149,20 @@ class AppRouter {
           ),
         );
         
+      case '/complete-profile':
+        final Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
+        final String userId = args['userId'];
+        final String existingLastName = args['existingLastName'] ?? '';
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (_) => di.sl<GoogleAuthBloc>(),
+            child: CompleteProfilePage(
+              userId: userId,
+              existingLastName: existingLastName,
+            ),
+          ),
+        );
+
       case '/forgot-password':
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
@@ -205,9 +195,20 @@ class AppRouter {
         
       case '/welcome':
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (_) => di.sl<LoginBloc>(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (_) => di.sl<LoginBloc>()),
+              BlocProvider(create: (_) => di.sl<GoogleAuthBloc>()),
+            ],
             child: const WelcomePage(),
+          ),
+        );
+
+      case '/search':
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (_) => di.sl<SearchBloc>(),
+            child: const SearchPage(),
           ),
         );
         
